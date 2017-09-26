@@ -5,13 +5,13 @@
 
     <application
         android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        android:fullBackupContent="@xml/backup_descriptor">
+        tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,12 +23,18 @@
             android:name=".DetailActivity"
             android:label="@string/create_order"
             android:parentActivityName=".MainActivity">
-            <!-- You only need to add the <meta-data> element if you’re supporting apps below API level 16.
+
+            <!--
+            You only need to add the <meta-data> element if you’re supporting apps below API level 16.
             We’ve only included it so you can see what it looks like, but including it in your code won’t
-            do any harm. -->
+            do any harm.
+            -->
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+        </activity>
+        <activity android:name=".TempActivity">
+
         </activity>
     </application>
 

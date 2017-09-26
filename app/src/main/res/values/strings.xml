@@ -4,4 +4,8 @@
     <string name="create_order_title">Create Order</string>
     <string name="action_share">Share</string>
 
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+
 </resources>

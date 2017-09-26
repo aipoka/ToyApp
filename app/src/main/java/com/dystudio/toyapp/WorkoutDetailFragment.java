@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,6 +36,13 @@ public class WorkoutDetailFragment extends Fragment {
         LogUtil.getLogger().log("onCreate:WorkoutDetailFragment "+MainActivity.FRAGMENTCREATEDSYMBOL);
         if (savedInstanceState != null) {
             mWorkoutId = savedInstanceState.getLong(CURRENTWORKOUTID);
+        } else {
+            StopwatchFragment stopwatch = new StopwatchFragment();
+            FragmentTransaction ft = getChildFragmentManager().beginTransaction();
+            ft.add(R.id.stopwatch_container, stopwatch);
+            ft.addToBackStack(null);
+            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+            ft.commit();
         }
     }
 
