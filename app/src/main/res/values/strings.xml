@@ -1,3 +1,12 @@
 <resources>
-    <string name="app_name">ToyApp</string>
+    <string name="app_name">PizzaHeart</string>
+    <string name="start">Start</string>
+    <string name="stop">Stop</string>
+    <string name="reset">Reset</string>
+    <string name="to_label">To: </string>
+    <string name="email_hint">Enter your email address</string>
+    <string name="to">To:</string>
+    <string name="msg_hint">Write your Message</string>
+    <string name="subject_hint">Subject</string>
+    <string name="sent_btn">Send</string>
 </resources>
