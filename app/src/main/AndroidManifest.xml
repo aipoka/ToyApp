@@ -18,6 +18,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name=".DetailActivity"
+            android:label="@string/create_order"
+            android:parentActivityName=".MainActivity">
+            <!-- You only need to add the <meta-data> element if you’re supporting apps below API level 16.
+            We’ve only included it so you can see what it looks like, but including it in your code won’t
+            do any harm. -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".MainActivity" />
+        </activity>
     </application>
 
 </manifest>

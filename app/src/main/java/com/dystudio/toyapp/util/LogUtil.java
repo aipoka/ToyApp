@@ -5,7 +5,7 @@ import android.util.Log;
 
 public class LogUtil {
     private static LogUtil sLogUtil;
-    private String mTag = "com.dystudio";
+    private String mTag = "abc";
     private boolean mDebugFlag = true;
 
     private LogUtil(){ }

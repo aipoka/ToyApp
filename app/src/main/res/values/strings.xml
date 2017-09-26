@@ -1,12 +1,9 @@
 <resources>
     <string name="app_name">PizzaHeart</string>
-    <string name="start">Start</string>
-    <string name="stop">Stop</string>
-    <string name="reset">Reset</string>
-    <string name="to_label">To: </string>
-    <string name="email_hint">Enter your email address</string>
-    <string name="to">To:</string>
-    <string name="msg_hint">Write your Message</string>
-    <string name="subject_hint">Subject</string>
-    <string name="sent_btn">Send</string>
+    <string name="create_order">Create Order</string>
+    <string name="create_order_title">Create Order</string>
+    <string name="action_share">Share</string>
+    <string name="details_button">Show Details</string>
+    <string name="workout_title">Title</string>
+    <string name="workout_description">Description</string>
 </resources>
