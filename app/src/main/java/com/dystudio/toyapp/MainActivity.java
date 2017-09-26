@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.dystudio.toyapp.util.LogUtil;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements WorkoutListFragme
     public static final String VIEWDESTROYSYMBOL = " v-----------v";
 
     private  boolean mWasUp = false;
+    private View mFragmentContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +42,10 @@ public class MainActivity extends AppCompatActivity implements WorkoutListFragme
         addActionBar(this);
         LogUtil.getLogger().log("onCreate:MainActivity " + ACTIVITYCREATEDSYMBOL);
 
-        View fragmentContainer = findViewById(R.id.fragment_container);
+        mFragmentContainer = findViewById(R.id.fragment_container);
         if(savedInstanceState!= null)
             mWasUp = savedInstanceState.getBoolean(WASUPFLAG);
-        if (fragmentContainer != null && (!mWasUp)) {
+        if (mFragmentContainer != null && (!mWasUp)) {
             WorkoutDetailFragment details = new WorkoutDetailFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             details.setWorkoutId(0);
@@ -83,9 +85,15 @@ public class MainActivity extends AppCompatActivity implements WorkoutListFragme
         LogUtil.getLogger().log("onOptionsItemSelected:MainActivity");
         switch (item.getItemId()) {
             case R.id.action_create_order:
-                Intent intent = new Intent(this, DetailActivity.class);
-                startActivity(intent);
-                return true;
+                if(mFragmentContainer == null) {
+                    Intent intent = new Intent(this, DetailActivity.class);
+                    startActivity(intent);
+                    return true;
+                } else {
+                    LogUtil.getLogger().log("You pressed the magic button");
+                    Toast.makeText(this, "You pressed magic button",Toast.LENGTH_SHORT);
+                }
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -150,9 +158,9 @@ public class MainActivity extends AppCompatActivity implements WorkoutListFragme
 
     @Override
     public void itemClicked(long id) {
-        View fragmentContainer = findViewById(R.id.fragment_container);
-        LogUtil.getLogger().log("itemClicked and fragment_container is "+fragmentContainer);
-        if (fragmentContainer != null) {
+         //mFragmentContainer = findViewById(R.id.fragment_container);
+        LogUtil.getLogger().log("itemClicked and fragment_container is "+mFragmentContainer);
+        if (mFragmentContainer != null) {
             WorkoutDetailFragment details = new WorkoutDetailFragment();
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             details.setWorkoutId(id);
