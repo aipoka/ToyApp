@@ -1,4 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
+    <!--xmlns:tools="http://schemas.android.com/tools"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:orientation="vertical"-->
+    <!--tools:context="com.dystudio.toyapp.MainActivity">-->
+
+    <!--<include-->
+        <!--android:id="@+id/toolbar"-->
+        <!--layout="@layout/toolbar_main" />-->
+
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent"-->
+        <!--android:orientation="horizontal">-->
+
+        <!--<fragment-->
+            <!--android:id="@+id/list_frag"-->
+            <!--android:name="com.dystudio.toyapp.WorkoutListFragment"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="2" />-->
+
+
+        <!--<fragment-->
+            <!--android:id="@+id/detail_frag"-->
+            <!--android:name="com.dystudio.toyapp.WorkoutDetailFragment"-->
+            <!--android:layout_width="0dp"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_weight="3" />-->
+    <!--</LinearLayout>-->
+<!--</LinearLayout>-->
+
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -11,9 +45,9 @@
         layout="@layout/toolbar_main"
         android:id="@+id/toolbar" />
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:onClick="onShowDetails"
-        android:text="@string/details_button" />
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+        android:name="com.dystudio.toyapp.WorkoutListFragment"
+        android:id="@+id/workoutList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </LinearLayout>

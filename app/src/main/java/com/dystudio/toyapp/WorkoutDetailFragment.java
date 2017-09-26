@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,13 +20,23 @@ import com.dystudio.toyapp.util.LogUtil;
  */
 public class WorkoutDetailFragment extends Fragment {
 
-    private long mWorkoutId;
+    private static final String CURRENTWORKOUTID = "current_workout_id";
+    private long mWorkoutId = 0;
 
     public WorkoutDetailFragment() {
         // Required empty public constructor
         LogUtil.getLogger().log("WorkoutDetailFragment constructor:WorkoutDetailFragment " + MainActivity.FRAGMENTCREATEDSYMBOL);
     }
 
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        LogUtil.getLogger().log("onCreate:WorkoutDetailFragment "+MainActivity.FRAGMENTCREATEDSYMBOL);
+        if (savedInstanceState != null) {
+            mWorkoutId = savedInstanceState.getLong(CURRENTWORKOUTID);
+        }
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -36,6 +47,7 @@ public class WorkoutDetailFragment extends Fragment {
 
     }
 
+    @SuppressWarnings("SameParameterValue")
     public void setWorkoutId(long workoutId) {
         mWorkoutId = workoutId;
     }
@@ -56,6 +68,7 @@ public class WorkoutDetailFragment extends Fragment {
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
         LogUtil.getLogger().log("onSaveInstanceState:WorkoutDetailFragment " + MainActivity.SAVESTATESYMBOL);
+        outState.putLong(CURRENTWORKOUTID,mWorkoutId);
     }
 
     @Override

@@ -4,11 +4,12 @@ import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.Toolbar;
 
 import com.dystudio.toyapp.util.LogUtil;
 
 public class DetailActivity extends AppCompatActivity {
+
+    public static final String EXTRA_WORKOUT_ID = "id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,10 +20,12 @@ public class DetailActivity extends AppCompatActivity {
         MainActivity.addActionBar(this);
 
         ActionBar actionBar = getSupportActionBar();
+        assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
 
         WorkoutDetailFragment frag = (WorkoutDetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
-        frag.setWorkoutId(1);
+        int workoutId = (int) getIntent().getExtras().get(EXTRA_WORKOUT_ID);
+        frag.setWorkoutId(workoutId);
     }
 
     @Override

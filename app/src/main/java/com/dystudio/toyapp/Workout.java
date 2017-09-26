@@ -2,8 +2,8 @@ package com.dystudio.toyapp;
 
 
 public class Workout {
-    private String name;
-    private String description;
+    private final String name;
+    private final String description;
     public static final Workout[] workouts = {
             new Workout("The Limb Loosener",
                     "5 Handstand push-ups\n10 1-legged squats\n15 Pull-ups"),

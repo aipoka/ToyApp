@@ -3,6 +3,7 @@ package com.dystudio.toyapp.util;
 
 import android.util.Log;
 
+@SuppressWarnings("unused")
 public class LogUtil {
     private static LogUtil sLogUtil;
     private String mTag = "abc";
