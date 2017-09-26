@@ -20,13 +20,23 @@ public class MainActivity extends AppCompatActivity {
 
     private ShareActionProvider mShareActionProvider;
 
+    public static String ACTIVITYCREATEDSYMBOL =" a+++++++++++a";
+    public static String FRAGMENTCREATEDSYMBOL =" f+++++++++++f";
+    public static String VIEWCREATEDSYMBOL =" v++++++++++v";
+    public static String RESUMESYMBOL =" r@@@@@@@r";
+    public static String PAUSESYMBOL =" p######p";
+    public static String SAVESTATESYMBOL =" s______s";
+    public static String ACTIVITYDESTROYSYMBOL =" a-----------a";
+    public static String FRAGMENTDESTROYSYMBOL =" f-----------f";
+    public static String VIEWDESTROYSYMBOL =" v-----------v";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         addActionBar(this);
-        LogUtil.getLogger().log("onCreate:MainActivity");
+        LogUtil.getLogger().log("onCreate:MainActivity "+ ACTIVITYCREATEDSYMBOL);
     }
 
     public static void addActionBar(Context context) {
@@ -73,19 +83,19 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtil.getLogger().log("onResume:MainActivity");
+        LogUtil.getLogger().log("onResume:MainActivity "+RESUMESYMBOL);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LogUtil.getLogger().log("onPause:MainActivity ---->");
+        LogUtil.getLogger().log("onPause:MainActivity "+PAUSESYMBOL);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        LogUtil.getLogger().log("onSaveInstanceState:MainActivity !!!!!");
+        LogUtil.getLogger().log("onSaveInstanceState:MainActivity "+SAVESTATESYMBOL);
     }
 
     @Override
@@ -103,12 +113,18 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogUtil.getLogger().log("onDestroy:MainActivity =========!!!!");
+        LogUtil.getLogger().log("onDestroy:MainActivity "+ACTIVITYDESTROYSYMBOL);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         LogUtil.getLogger().log("onStop:MainActivity");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        LogUtil.getLogger().log("onActivityResult:MainActivity:"+requestCode+":"+resultCode+":"+data);
     }
 }

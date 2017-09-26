@@ -1,5 +1,6 @@
 package com.dystudio.toyapp;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -11,33 +12,36 @@ public class DetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        LogUtil.getLogger().log("onCreate:DetailActivity");
+        LogUtil.getLogger().log("onCreate:DetailActivity "+MainActivity.ACTIVITYCREATEDSYMBOL);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
-        Toolbar toolbar =  findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+        MainActivity.addActionBar(this);
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+        WorkoutDetailFragment frag = (WorkoutDetailFragment) getSupportFragmentManager().findFragmentById(R.id.detail_fragment);
+        frag.setWorkoutId(1);
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        LogUtil.getLogger().log("onResume:DetailActivity");
+        LogUtil.getLogger().log("onResume:DetailActivity "+MainActivity.RESUMESYMBOL);
 
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        LogUtil.getLogger().log("onPause:DetailActivity ---->");
+        LogUtil.getLogger().log("onPause:DetailActivity "+MainActivity.PAUSESYMBOL);
     }
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        LogUtil.getLogger().log("onSaveInstanceState:DetailActivity !!!!");
+        LogUtil.getLogger().log("onSaveInstanceState:DetailActivity "+MainActivity.SAVESTATESYMBOL);
     }
 
     @Override
@@ -55,12 +59,18 @@ public class DetailActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        LogUtil.getLogger().log("onDestroy:DetailActivity =========!!!!");
+        LogUtil.getLogger().log("onDestroy:DetailActivity "+MainActivity.ACTIVITYDESTROYSYMBOL);
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         LogUtil.getLogger().log("onStop:DetailActivity");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        LogUtil.getLogger().log("onActivityResult:DetailActivity:"+requestCode+":"+resultCode+":"+data);
     }
 }
