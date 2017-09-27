@@ -3,8 +3,13 @@ package com.dystudio.toyapp;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.MenuItemCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
 import android.support.v7.widget.Toolbar;
@@ -37,23 +42,29 @@ public class MainActivity extends AppCompatActivity implements WorkoutListFragme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main2);
 
         addActionBar(this);
         LogUtil.getLogger().log("onCreate:MainActivity " + ACTIVITYCREATEDSYMBOL);
 
-        mFragmentContainer = findViewById(R.id.fragment_container);
-        if(savedInstanceState!= null)
-            mWasUp = savedInstanceState.getBoolean(WASUPFLAG);
-        if (mFragmentContainer != null && (!mWasUp)) {
-            WorkoutDetailFragment details = new WorkoutDetailFragment();
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            details.setWorkoutId(0);
-            ft.add(R.id.fragment_container, details);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.addToBackStack(null);
-            ft.commit();
-        }
+//        mFragmentContainer = findViewById(R.id.fragment_container);
+//        if(savedInstanceState!= null)
+//            mWasUp = savedInstanceState.getBoolean(WASUPFLAG);
+//        if (mFragmentContainer != null && (!mWasUp)) {
+//            WorkoutDetailFragment details = new WorkoutDetailFragment();
+//            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+//            details.setWorkoutId(0);
+//            ft.add(R.id.fragment_container, details);
+//            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+//            ft.addToBackStack(null);
+//            ft.commit();
+//        }
+        SectionsPagerAdapter pagerAdapter =
+                new SectionsPagerAdapter(getSupportFragmentManager());
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(pagerAdapter);
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        tabLayout.setupWithViewPager(pager);
 
     }
 
@@ -86,7 +97,8 @@ public class MainActivity extends AppCompatActivity implements WorkoutListFragme
         switch (item.getItemId()) {
             case R.id.action_create_order:
                 if(mFragmentContainer == null) {
-                    Intent intent = new Intent(this, DetailActivity.class);
+                    //Intent intent = new Intent(this, DetailActivity.class);
+                    Intent intent = new Intent(this, OrderActivity.class);
                     startActivity(intent);
                     return true;
                 } else {
@@ -96,6 +108,45 @@ public class MainActivity extends AppCompatActivity implements WorkoutListFragme
 
             default:
                 return super.onOptionsItemSelected(item);
+        }
+    }
+
+    private class SectionsPagerAdapter extends FragmentPagerAdapter {
+        public SectionsPagerAdapter(FragmentManager fm) {
+            super(fm);
+        }
+        @Override
+        public int getCount() {
+            return 4;
+        }
+        @Override
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return new TopFragment();
+                case 1:
+                    return new PizzaFragment();
+                case 2:
+                    return new PastaFragment();
+                case 3:
+                    return new StoresFragment();
+            }
+            return null;
+        }
+
+        @Override
+        public CharSequence getPageTitle(int position) {
+            switch (position) {
+                case 0:
+                    return getResources().getText(R.string.home_tab);
+                case 1:
+                    return getResources().getText(R.string.pizza_tab);
+                case 2:
+                    return getResources().getText(R.string.pasta_tab);
+                case 3:
+                    return getResources().getText(R.string.store_tab);
+            }
+            return null;
         }
     }
 
